@@ -26,7 +26,8 @@ public class ChangeUserServlet extends BaseServlet {
 	 */
 	public String findUserPostById(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String uid = request.getParameter("uid");
+		User user = (User) request.getSession().getAttribute("session_user");
+		String uid = user.getUid();
 		List<Post> list =  userService.findUserPostById(uid);
 		request.setAttribute("postList", list);
 		return "f:/user.jsp";
@@ -43,8 +44,7 @@ public class ChangeUserServlet extends BaseServlet {
 	 */
 	public String changeUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String uid = request.getParameter("uid");
-		User user = userService.getById(uid);
+		User user = (User) request.getSession().getAttribute("session_user");
 		request.setAttribute("user",user);
 		return "f:/changeuser.jsp";
 	}
@@ -64,9 +64,8 @@ public class ChangeUserServlet extends BaseServlet {
 			request.setAttribute("msg","已存在用户名，请重新输入");
 			return "f:/changeuser.jsp";
 		}
-		//System.out.println(user.toString());
+		//的到当前用户的user
 		User user1 = (User) request.getSession().getAttribute("session_user");
-		//System.out.println(user1.toString());
 		
 		user.setUid(user1.getUid());
 		if(user.getUsername()==null||user.getUsername().trim().equals("")){

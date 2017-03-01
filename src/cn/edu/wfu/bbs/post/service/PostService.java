@@ -44,6 +44,8 @@ public class PostService {
 		postDao.delete(pid);
 		
 	}
+
+	
 	
 
 }

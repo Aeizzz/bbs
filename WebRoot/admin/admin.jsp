@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -41,7 +42,7 @@
 		<div class="ibox-title">
 			<h5>姓名：${sessionScope.session_user.name}</h5>
 			<h5>用户名：${sessionScope.session_user.username}</h5>
-			<h5>创建时间：${sessionScope.session_user.creattime}</h5>
+			<h5>创建时间：<fmt:formatDate pattern="yyy-MM-dd hh:mm:ss" value="${sessionScope.session_user.creattime}"/></h5>
 		</div>
 		<!-- 所有的人员信息，可以设置管理员，删除用户 -->
 		<div class="wrapper wrapper-content animated fadeInRight">
@@ -70,7 +71,7 @@
 										<tr class="gradeX">
 											<td>${user.username}</td>
 											<td>${user.name }</td>
-											<td>${user.creattime }</td>
+											<td><fmt:formatDate pattern="yyy-MM-dd hh:mm:ss" value="${user.creattime }"/></td>
 											<td class="center"><c:choose>
 													<c:when test="${user.admin eq true }">
 														<a href="<c:url value="/servlet/AdminServlet?method=updateAdmin&uid=${user.uid}"/>">取消管理员</a>
@@ -116,21 +117,22 @@
 								class="table table-striped table-bordered table-hover dataTables-example">
 								<thead>
 									<tr>
+										<th>文章ID</th>
 										<th>文章标题</th>
 										<th>作者姓名</th>
 										<th>创建时间</th>
-										<th>所属分类</th>
+										
 										<th>删除</th>
 									</tr>
 								</thead>
 								<tbody>
 										<c:forEach items="${PostList}" var="post">
 										<tr class="gradeX">
-
+											<td>${post.pid}</td>
 											<td><a href="<c:url value="/PostServlet?method=findPostById&pid=${post.pid}"/>">${post.title}</a></td>
 											<td>${post.name}</td>
-											<td>${post.creattime}</td>
-											<td>没有份类</td>
+											<td><fmt:formatDate pattern="yyy-MM-dd hh:mm:ss" value="${post.creattime }"/></td>
+											
 											<td><a href="<c:url value="/servlet/AdminServlet?method=deletePost&pid=${post.pid}"/>">删除</a></td>
 										</tr>
 									</c:forEach>
@@ -138,10 +140,10 @@
 								</tbody>
 								<tfoot>
 									<tr>
+										<th>文章ID</th>
 										<th>文章标题</th>
 										<th>作者姓名</th>
 										<th>创建时间</th>
-										<th>所属分类</th>
 										<th>删除</th>
 									</tr>
 								</tfoot>

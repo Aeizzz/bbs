@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -58,7 +59,7 @@
 							</button>
 						</div>
 						<div class="pull-left">
-							<button class="btn btn-white btn-xs" type="button">${post.creattime}</button>
+							<button class="btn btn-white btn-xs" type="button"><fmt:formatDate pattern="yyy-MM-dd hh:mm:ss" value="${post.creattime}"/></button>
 
 						</div>
 						<div class="text-center article-title">

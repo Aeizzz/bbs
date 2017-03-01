@@ -60,9 +60,9 @@ public class UserServlet extends BaseServlet {
 	public String login(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		User from = CommonUtils.toBean(request.getParameterMap(), User.class);
-		System.out.println(from);
+		//System.out.println(from);
 		User user = userSerice.getByName(from.getUsername());
-		System.out.println(user);
+		//System.out.println(user);
 		if(user==null){
 			request.setAttribute("msg", "用户不存在");
 			request.setAttribute("user", from);

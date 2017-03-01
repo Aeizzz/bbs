@@ -41,7 +41,7 @@
 			<div class="form-group">
 				<div class="col-sm-9">
 					<p>用户名,不改则留空</p>
-					<input type="text" name="usersname" class="form-control"
+					<input type="text" name="username" class="form-control"
 						placeholder="请输入用户名" value="${user.username}"><span
 						class="help-block m-b-none"></span>
 
@@ -66,7 +66,7 @@
 			<div class="form-group">
 				<div class="col-sm-9">
 					<p>密码,不改则留空</p>
-					<input type="password" class="form-control" name="password"
+					<input type="password" class="form-control" name="passworld"
 						placeholder="请输入密码，留空则不变">
 				</div>
 			</div>

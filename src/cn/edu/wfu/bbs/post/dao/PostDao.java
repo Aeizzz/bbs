@@ -13,6 +13,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 
 
+
 import cn.edu.wfu.bbs.post.domain.Post;
 import cn.edu.wfu.bbs.post.domain.PostCustomer;
 import cn.itcast.jdbc.TxQueryRunner;
@@ -21,9 +22,9 @@ public class PostDao {
 	private QueryRunner qr = new TxQueryRunner();
 
 	public void addPost(Post post) {
-		String sql = "insert into post values(?,?,?,?,?,?)";
+		String sql = "insert into post values(?,?,?,?,?)";
 		Timestamp timestamp = new Timestamp(post.getCreattime().getTime());
-		Object [] parems={post.getPid(),post.getTitle(),post.getContent(),timestamp,post.getCid(),post.getUser().getUid()};
+		Object [] parems={post.getPid(),post.getTitle(),post.getContent(),timestamp,post.getUser().getUid()};
 		try {
 			qr.update(sql,parems);
 		} catch (SQLException e) {
@@ -45,16 +46,13 @@ public class PostDao {
 	public List<PostCustomer> getBypost(int x,int y){
 		
 		try {
-			String sql="select post.pid,post.title,user.username,user.name,post.creattime from post,user where post.uid=user.uid ORDER BY creattime desc limit ?,? ";
+			String sql="select post.pid,post.title,user.username,user.name,post.creattime,post.uid from post,user where post.uid=user.uid ORDER BY creattime desc limit ?,? ";
 			List<PostCustomer> list;
 			list = qr.query(sql, new BeanListHandler<PostCustomer>(PostCustomer.class),x,y);
 			return list;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		
-		return null;
 	}
 	public PostCustomer findPostById(String pid) {
 		try {

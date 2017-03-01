@@ -4,8 +4,7 @@
 <header> </header>
 <body>
 	<form id="form"
-		action="${pageContext.request.contextPath }/PostServlet" method="post">
-		<input type="hidden" name="method" value="findByPost">
+		action="${pageContext.request.contextPath }/PostServlet?method=findByPost" method="post">
 	</form>
 
 	<script type="text/javascript">

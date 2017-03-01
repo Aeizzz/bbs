@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -39,7 +40,7 @@
 		<div class="ibox-title">
 			<h5>姓名：${sessionScope.session_user.name}</h5>
 			<h5>用户名：${sessionScope.session_user.username}</h5>
-			<h5>创建时间：${sessionScope.session_user.creattime}</h5>
+			<h5>创建时间：<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${sessionScope.session_user.creattime}"/></h5>
 		</div>
 		<!-- 所写文章 -->
 		<div class="content">

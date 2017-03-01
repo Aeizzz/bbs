@@ -13,15 +13,13 @@ import cn.edu.wfu.bbs.post.domain.Post;
 import cn.edu.wfu.bbs.post.domain.PostCustomer;
 import cn.edu.wfu.bbs.post.service.PostService;
 import cn.edu.wfu.bbs.user.domain.User;
+import cn.edu.wfu.bbs.user.service.UserService;
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.servlet.BaseServlet;
 
 public class PostServlet extends BaseServlet {
 	private PostService postService = new PostService();
-	
-	
-	
-
+	private UserService userService = new UserService();
 	
 	/**
 	 * 
@@ -83,6 +81,26 @@ public class PostServlet extends BaseServlet {
 		request.setAttribute("search", search);
 		request.setAttribute("count", count);
 		return "f:/search.jsp";
+	}
+	
+	
+	
+	/**
+	 * 查找指定用户文章
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String findPostByUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String uid = request.getParameter("uid");
+		User user = userService.getById(uid);
+		List<Post> list = userService.findUserPostById(uid);
+		request.setAttribute("list", list);
+		request.setAttribute("user", user);
+		return "f:/userpost.jsp";
+
 	}
 	
 	

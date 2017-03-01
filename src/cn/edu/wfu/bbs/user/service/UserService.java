@@ -15,9 +15,9 @@ public class UserService {
 	}
 
 	public void add(User user) {
-		
+
 		userdao.add(user);
-		
+
 	}
 
 	public List<Post> findUserPostById(String uid) {
@@ -31,31 +31,27 @@ public class UserService {
 	public void changeUserById(User user) {
 		userdao.changeUserById(user);
 	}
-	
+
 	public List<User> findAllUser() {
 		return userdao.findAllUser();
 	}
-	
+
 	public List<PostCustomer> findAllPost() {
 		return userdao.findAllPost();
 	}
 
 	public void deletePost(String pid) {
 		userdao.deletePost(pid);
-		
+
 	}
 
 	public void deleteUser(String uid) {
 		userdao.deleteUser(uid);
-		
+
 	}
 
 	public void updateAdmin(String uid, boolean bool) {
-		userdao.updateAdmin(uid,bool);
-		
-	}
-	
-	
-	
+		userdao.updateAdmin(uid, bool);
 
+	}
 }

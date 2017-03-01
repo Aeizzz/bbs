@@ -67,7 +67,7 @@
 					</c:choose>
 					<li><a href="edit.jsp">发表帖子</a></li>
 					<li><a
-						href="<c:url value="/ChangeUserServlet?method=findUserPostById&uid=${sessionScope.session_user.uid}"/>">
+						href="<c:url value="/ChangeUserServlet?method=findUserPostById"/>">
 							<c:choose>
 								<c:when test="${empty sessionScope.session_user.name}">
 						${sessionScope.session_user.username}
@@ -80,7 +80,7 @@
 					</a></li>
 
 					<li><a
-						href="<c:url value="ChangeUserServlet?method=changeUser&uid=${sessionScope.session_user.uid}"/>">修改资料</a></li>
+						href="<c:url value="ChangeUserServlet?method=changeUser"/>">修改资料</a></li>
 
 					<li><a href="<c:url value="/UserServlet?method=quite"/>">
 							<i class="fa fa-sign-out"></i>退出
@@ -127,14 +127,17 @@
 
 										</div>
 										<div class="">
-											<span style="font-size: 20px">作者： <c:choose>
-													<c:when test="${empty list.name}">
+											<span style="font-size: 20px">作者： 
+											<a href="<c:url value="PostServlet?method=findPostByUser&uid=${list.uid}"/>">
+													<c:choose>
+														<c:when test="${empty list.name}">
 											${list.username}
 											</c:when>
-													<c:otherwise>
+														<c:otherwise>
 											${list.name}
 											</c:otherwise>
-												</c:choose>
+													</c:choose>
+											</a>
 											</span>
 										</div>
 									</div>
