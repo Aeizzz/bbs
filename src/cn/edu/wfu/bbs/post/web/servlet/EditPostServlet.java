@@ -75,7 +75,7 @@ public class EditPostServlet extends BaseServlet {
 	
 	
 	/**
-	 * 跟新文章
+	 * 更新文章
 	 * @param request
 	 * @param response
 	 * @return
